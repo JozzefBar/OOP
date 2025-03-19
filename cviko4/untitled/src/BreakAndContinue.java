@@ -8,6 +8,7 @@ public class BreakAndContinue {
         boolean contains = containsAll(words, new char[]{'A', 'N'});
         System.out.println("constainsAll: " + contains);
 
+        System.out.println("upper case words:");
         printUpperCaseWords(words);
     }
 

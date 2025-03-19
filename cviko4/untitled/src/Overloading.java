@@ -10,6 +10,6 @@ public class Overloading {
     }
 
     public static void print(String text) {
-        System.out.println("integer: " + text);
+        System.out.println("text: " + text);
     }
 }
