@@ -15,6 +15,8 @@ This repository contains a collection of assignments and exercises created as pa
 ## 🖥️ Development Environment  
 
 All code in this repository was written and tested in **IntelliJ IDEA**. <img alt="Intellij" width="25px" hspace="5" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intellij/intellij-original.svg" />  
+Each project was developed using **OpenJDK 23 (Oracle OpenJDK 23.0.2)**.  
+
 To run any project:  
 1. Open IntelliJ IDEA.  
 2. Select **File → Open** and choose the desired folder.  
