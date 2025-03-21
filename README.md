@@ -1,16 +1,20 @@
-# Java OOP Assignments  
+# Object Oriented Programming - Java
 
 This repository contains a collection of assignments and exercises created as part of the **Object-Oriented Programming (OOP) course at STU FEI**.
 
 <img src= "gif/ezgif.com-animated-gif-maker.gif" hspace = 30 width = 150px>
 
-## 📂 Repository Structure  
+## 📂 Repository Structure
 
+### Seminars
 - [cviko1](cviko1/) – Introduction to Java and basic syntax
-- [cviko2](cviko2/) – Classes and objects
-- [cviko3](cviko3/) – Columnar transposition cipher implementation 
+- [cviko2](cviko2/) – primitive and reference types, wrappers, final variable....
+- [cviko3](cviko3/) – arrays, functions, import, logging (tinylog)
 - [cviko4](cviko4/) – Java language features, recursion, enum, overloading....
-- [zadania/zadanie1](zadania/zadanie1/) – Assignment 1 (simple scalar product of 2 vectors)
+ 
+### Assignments
+- [zadanie1](zadania/zadanie1/) – Assignment 1 (simple scalar product of 2 vectors)
+- [zadanie2](zadania/zadanie2/) – Assignment 2 (creating class with constructors ...)
 
 ## 🖥️ Development Environment  
 
