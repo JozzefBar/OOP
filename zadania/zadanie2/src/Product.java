@@ -1,12 +1,12 @@
 public class Product {
     private String name;
     private int basePrice;
-    private int DiscountPercentage;
+    private int discountPercentage;
 
     public Product(String name, int basePrice){
         this.name = name;
         this.basePrice = basePrice;
-        this.DiscountPercentage = 0;
+        this.discountPercentage = 0;
     }
 
     public String getName(){
@@ -14,7 +14,7 @@ public class Product {
     }
 
     public int getDiscountPercentage(){
-        return this.DiscountPercentage;
+        return this.discountPercentage;
     }
 
     public int getBasePrice(){
@@ -26,14 +26,14 @@ public class Product {
     }
 
     public void setDiscountPercentage(int DiscountPercentage){
-        if(DiscountPercentage >= 0 && DiscountPercentage <= 100) this.DiscountPercentage = DiscountPercentage;
+        if(DiscountPercentage >= 0 && DiscountPercentage <= 100) this.discountPercentage = DiscountPercentage;
     }
 
     public void setBasePrice(int basePrice){
-        if(basePrice > 0) this.basePrice = basePrice;
+        if(basePrice >= 0) this.basePrice = basePrice;
     }
 
     public int computePrice(){
-        return (int)(this.basePrice*(double)(1 - this.DiscountPercentage/100));
+        return (int)(this.basePrice * (1 - this.discountPercentage / 100.0));
     }
 }
