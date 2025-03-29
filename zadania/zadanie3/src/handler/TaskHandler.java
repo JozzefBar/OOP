@@ -51,7 +51,7 @@ public class TaskHandler {
                     //riesenie cez pridanu metodu isFinished
                     if (tasks[j].isFinished()) {
                         removeTask(tasks[j]);
-                        j--; // Aby sme nepreskočili ďalšiu úlohu
+                        j--;
                     }
 
                 }

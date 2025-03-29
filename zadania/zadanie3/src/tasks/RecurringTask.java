@@ -22,10 +22,12 @@ public class RecurringTask extends AbstractTask {
         return delayBetweenRuns;
     }
 
+
+    //opravit run funkciu!!
     @Override
     public void run() {
         if(numberOfRuns == null){
-            System.out.println("Task {" + getId() + "}: " + message);
+            System.out.println("Task" + getId() + ": " + message);
         }
         else if(numberOfRuns > 0){
             numberOfRuns--;
