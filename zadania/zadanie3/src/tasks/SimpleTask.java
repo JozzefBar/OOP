@@ -1,3 +1,4 @@
+
 package tasks;
 
 public class SimpleTask extends AbstractTask{
@@ -20,6 +21,6 @@ public class SimpleTask extends AbstractTask{
 
     @Override
     public boolean isFinished() {
-        return true;  // Po vykonaní sa vždy odstráni
+        return true;
     }
 }

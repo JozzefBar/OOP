@@ -1,3 +1,4 @@
+
 package handler;
 
 import tasks.AbstractTask;
@@ -16,7 +17,7 @@ public class TaskHandler {
         return tasks;
     }
 
-    public int getTaskindex(){
+    public int getTaskIndex(){
         return taskIndex;
     }
 
@@ -29,7 +30,7 @@ public class TaskHandler {
 
     public void removeTask(AbstractTask task){
         for(int i = 0; i < taskIndex; i++){
-            if(tasks[i] == task){
+            if (task.equals(tasks[i])){
                 for(int j = i; j < taskIndex - 1; j++){
                     tasks[j] = tasks[j + 1];
                 }
@@ -47,8 +48,6 @@ public class TaskHandler {
                 if (tasks[j] != null && tasks[j].getRunAtTick() == i) {
                     tasks[j].run();
 
-
-                    //riesenie cez pridanu metodu isFinished
                     if (tasks[j].isFinished()) {
                         removeTask(tasks[j]);
                         j--;

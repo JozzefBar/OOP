@@ -1,3 +1,4 @@
+
 package tasks;
 
 
@@ -7,7 +8,9 @@ public class RecurringTask extends AbstractTask {
 
     public RecurringTask(String message, long runAtTick, long delayBetweenRuns, Integer numberOfRuns){
         super(message, runAtTick);
-        assert numberOfRuns > 0 || numberOfRuns == null : "numberOfRuns musí byť kladné alebo null!";
+        //assert numberOfRuns > 0 || numberOfRuns == null : "numberOfRuns musí byť kladné alebo null!";
+        assert numberOfRuns == null || numberOfRuns > 0 : "numberOfRuns musí byť kladné alebo null!";
+        
         assert delayBetweenRuns > 0 : "delayBetweenRuns musí byť kladné!";
 
         this.delayBetweenRuns = delayBetweenRuns;
@@ -22,18 +25,17 @@ public class RecurringTask extends AbstractTask {
         return delayBetweenRuns;
     }
 
-
-    //opravit run funkciu!!
     @Override
     public void run() {
-        if(numberOfRuns == null){
-            System.out.println("Task" + getId() + ": " + message);
+        if (numberOfRuns == null) {
+            System.out.println("Task " + getId() + ": " + message);
+            runAtTick += delayBetweenRuns;
         }
-        else if(numberOfRuns > 0){
+        else if (numberOfRuns > 0) {
             numberOfRuns--;
             System.out.println("Task " + getId() + ": " + message);
+            runAtTick += delayBetweenRuns;
         }
-        runAtTick += delayBetweenRuns;
     }
 
     @Override
@@ -46,6 +48,6 @@ public class RecurringTask extends AbstractTask {
 
     @Override
     public boolean isFinished() {
-        return numberOfRuns == 0;  // Skončí, keď už nemá žiadne ďalšie opakovania
+        return numberOfRuns != null && numberOfRuns == 0;
     }
 }

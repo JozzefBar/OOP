@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a32c0b7-4db5-41b9-9e13-e4be60c1441a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/AbstractTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/AbstractTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/RecurringTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/RecurringTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SimpleTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SimpleTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/TaskIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/TaskIdGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zadanie3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/zadanie3.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2v5D1xRkuGWwBmb8uUCZyghzsYJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.tes1.executor": "Run",
+    "JUnit.test2 Task.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.tes1">
+    <configuration name="tes1" type="JUnit" factoryName="JUnit">
+      <module name="zadanie3" />
+      <option name="PACKAGE_NAME" value="tasks" />
+      <option name="MAIN_CLASS_NAME" value="tasks.RecurringTaskTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test2 Task" type="JUnit" factoryName="JUnit">
+      <module name="zadanie3" />
+      <option name="PACKAGE_NAME" value="handler" />
+      <option name="MAIN_CLASS_NAME" value="handler.TaskHandlerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.tes1" />
+      <item itemvalue="JUnit.test2 Task" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a32c0b7-4db5-41b9-9e13-e4be60c1441a" name="Changes" comment="" />
+      <created>1743425831428</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743425831428</updated>
+      <workItem from="1743425833171" duration="299000" />
+      <workItem from="1743440286111" duration="1592000" />
+      <workItem from="1743442748028" duration="5753000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

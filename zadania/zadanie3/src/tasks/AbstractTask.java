@@ -1,3 +1,4 @@
+
 package tasks;
 
 public abstract class AbstractTask {
@@ -23,6 +24,6 @@ public abstract class AbstractTask {
     }
 
     public abstract void run();
-
+    public abstract boolean equals(Object obj);
     public abstract boolean isFinished();
 }
