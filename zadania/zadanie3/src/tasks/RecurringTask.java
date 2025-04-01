@@ -8,9 +8,7 @@ public class RecurringTask extends AbstractTask {
 
     public RecurringTask(String message, long runAtTick, long delayBetweenRuns, Integer numberOfRuns){
         super(message, runAtTick);
-        //assert numberOfRuns > 0 || numberOfRuns == null : "numberOfRuns musí byť kladné alebo null!";
         assert numberOfRuns == null || numberOfRuns > 0 : "numberOfRuns musí byť kladné alebo null!";
-        
         assert delayBetweenRuns > 0 : "delayBetweenRuns musí byť kladné!";
 
         this.delayBetweenRuns = delayBetweenRuns;
