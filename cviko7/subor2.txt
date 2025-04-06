@@ -1,0 +1,1 @@
+produkt: pocitac, cena: 1000

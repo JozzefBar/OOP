@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a32c0b7-4db5-41b9-9e13-e4be60c1441a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/RecurringTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/RecurringTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +113,7 @@
       <workItem from="1743540672489" duration="398000" />
       <workItem from="1743541658578" duration="124000" />
       <workItem from="1743541808965" duration="119000" />
+      <workItem from="1743799481214" duration="742000" />
     </task>
     <servers />
   </component>
