@@ -19,9 +19,7 @@ public class TextImage implements Savable, Rotatable, Substitutable{
      * @throws IllegalArgumentException if the imagePath is invalid or the file is empty.
      */
     public TextImage(String imagePath) {
-
         try {
-            // Prvý prechod: zistíme počet riadkov
             BufferedReader reader = new BufferedReader(new FileReader(imagePath));
             int rowNum = 0;
             while (reader.readLine() != null) {
@@ -33,13 +31,12 @@ public class TextImage implements Savable, Rotatable, Substitutable{
                 throw new IllegalArgumentException("Súbor je prázdny.");
             }
 
-            // Druhý prechod: načítanie obsahu do char[][]
             image = new char[rowNum][];
             reader = new BufferedReader(new FileReader(imagePath));
             String line;
             int i = 0;
             while ((line = reader.readLine()) != null) {
-                image[i] = line.toCharArray(); // Konvertujeme String na char[]
+                image[i] = line.toCharArray();
                 i++;
             }
             reader.close();
@@ -47,7 +44,6 @@ public class TextImage implements Savable, Rotatable, Substitutable{
         } catch (IOException e) {
             throw new IllegalArgumentException("Chyba pri čítaní súboru: " + e.getMessage());
         }
-
     }
 
     /**
@@ -89,12 +85,11 @@ public class TextImage implements Savable, Rotatable, Substitutable{
      * @throws IllegalArgumentException if the coordinates are out of bounds
      */
     public char getSymbol(int x, int y) {
-        // Overenie, či sú súradnice v platnom rozsahu
         if (y < 0 || y >= image.length || x < 0 || x >= image[y].length) {
             throw new IllegalArgumentException("Coordinates (" + x + ", " + y + ") are out of bounds.");
         }
 
-        return image[y][x]; // Vrátime znak na zadaných súradniciach
+        return image[y][x];
     }
 
     @Override
@@ -105,8 +100,8 @@ public class TextImage implements Savable, Rotatable, Substitutable{
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             for (char[] row : image) {
-                writer.write(row);  // Zapíš celý riadok
-                writer.newLine();   // Pridaj nový riadok
+                writer.write(row);
+                writer.newLine();
             }
         } catch (IOException e) {
             throw new IllegalArgumentException("Could not save image " + path);
@@ -115,11 +110,8 @@ public class TextImage implements Savable, Rotatable, Substitutable{
 
     @Override
     public void substituteSymbol(char oldSymbol, char newSymbol) {
-        // Procházíme každý řádek obrázku
         for (int y = 0; y < image.length; y++) {
-            // Procházíme každý znak v řádku
             for (int x = 0; x < image[y].length; x++) {
-                // Pokud se znak shoduje s oldSymbol, nahradíme ho za newSymbol
                 if (image[y][x] == oldSymbol) {
                     image[y][x] = newSymbol;
                 }
@@ -138,14 +130,12 @@ public class TextImage implements Savable, Rotatable, Substitutable{
         char[][] rotatedImage = new char[width][height];
 
         if (direction == RotationDirection.LEFT) {
-            // Rotace doleva (proti směru hodinových ručiček)
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     rotatedImage[width - 1 - x][y] = image[y][x];
                 }
             }
-        } else { // RotationDirection.RIGHT
-            // Rotace doprava (ve směru hodinových ručiček)
+        } else {
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     rotatedImage[x][height - 1 - y] = image[y][x];
@@ -153,7 +143,6 @@ public class TextImage implements Savable, Rotatable, Substitutable{
             }
         }
 
-        // Aktualizace obrázku
         this.image = rotatedImage;
     }
 }

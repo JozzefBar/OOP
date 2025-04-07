@@ -14,7 +14,7 @@ import java.io.IOException;
  * It implements additional manipulation interfaces: {@link Normalizable}, {@link Rotatable},
  * as well as {@link Savable}.
  */
-public class RasterImage implements Savable, Rotatable {
+public class RasterImage implements Savable, Rotatable, Normalizable {
 
     // contents, do not change
     private BufferedImage image;
@@ -37,16 +37,6 @@ public class RasterImage implements Savable, Rotatable {
         } catch (IOException e) {
             throw new IllegalArgumentException("Could not load image " + imagePath);
         }
-
-        /*
-        if (tmpImage.getColorModel().hasAlpha()) {
-            // remove the aplha channel
-            image = copyImage(tmpImage);
-        } else {
-            image = tmpImage;
-        }
-
-         */
         image = tmpImage;
     }
 
@@ -116,14 +106,11 @@ public class RasterImage implements Savable, Rotatable {
 
         int width = image.getWidth();
         int height = image.getHeight();
-        // Pro rotaci potřebujeme nový obrázek se zaměněnými rozměry (šířka/výška)
         BufferedImage rotatedImage = new BufferedImage(height, width, image.getType());
 
         if (direction == RotationDirection.RIGHT) {
-            // Rotace o 90° vpravo (po směru hodinových ručiček)
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    // při rotaci vpravo: [x,y] -> [height-1-y,x]
                     rotatedImage.setRGB(height - 1 - y, x, image.getRGB(x, y));
                 }
             }
@@ -131,12 +118,38 @@ public class RasterImage implements Savable, Rotatable {
             // Rotace o 90° vlevo (proti směru hodinových ručiček)
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    // při rotaci vlevo: [x,y] -> [y,width-1-x]
                     rotatedImage.setRGB(y, width - 1 - x, image.getRGB(x, y));
                 }
             }
         }
 
         this.image = rotatedImage;
+    }
+
+    @Override
+    public void normalize() {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int rgb = image.getRGB(x, y);
+                int[] rgbArray = rgbToArray(rgb);
+
+                int sum = rgbArray[0] + rgbArray[1] + rgbArray[2];
+
+                if (sum > 0) {
+                    int newR = (rgbArray[0] * 255) / sum;
+                    int newG = (rgbArray[1] * 255) / sum;
+                    int newB = (rgbArray[2] * 255) / sum;
+
+                    rgbArray[0] = newR;
+                    rgbArray[1] = newG;
+                    rgbArray[2] = newB;
+
+                    image.setRGB(x, y, arrayToRgb(rgbArray));
+                }
+            }
+        }
     }
 }
