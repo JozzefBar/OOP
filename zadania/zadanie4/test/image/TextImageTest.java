@@ -3,9 +3,12 @@ package image;
 import manipulation.RotationDirection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TextImageTest {

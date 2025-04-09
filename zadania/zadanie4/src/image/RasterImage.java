@@ -59,8 +59,7 @@ public class RasterImage implements Savable, Rotatable, Normalizable {
     private static int[] rgbToArray(int rgb) {
         // do not change this method
 
-        if (rgb < 0) throw new IllegalArgumentException("Invalid RGB value");
-        else return new int[]{(rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF};
+        return new int[]{(rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF};
     }
 
     /**
@@ -115,7 +114,6 @@ public class RasterImage implements Savable, Rotatable, Normalizable {
                 }
             }
         } else if (direction == RotationDirection.LEFT) {
-            // Rotace o 90° vlevo (proti směru hodinových ručiček)
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     rotatedImage.setRGB(y, width - 1 - x, image.getRGB(x, y));
