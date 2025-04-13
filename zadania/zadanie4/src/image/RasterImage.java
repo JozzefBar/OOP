@@ -144,9 +144,14 @@ public class RasterImage implements Savable, Rotatable, Normalizable {
                     rgbArray[0] = newR;
                     rgbArray[1] = newG;
                     rgbArray[2] = newB;
-
-                    image.setRGB(x, y, arrayToRgb(rgbArray));
                 }
+                if(sum == 0) {
+                    rgbArray[0] = 0;
+                    rgbArray[1] = 0;
+                    rgbArray[2] = 0;
+                }
+
+                image.setRGB(x, y, arrayToRgb(rgbArray));
             }
         }
     }
