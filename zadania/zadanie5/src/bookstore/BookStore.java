@@ -55,4 +55,8 @@ public class BookStore {
     public Map<Book, Integer> getInventory() {
         return inventory;
     }
+
+    public String getName(){
+        return name;
+    }
 }

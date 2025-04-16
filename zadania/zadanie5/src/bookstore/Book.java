@@ -24,6 +24,15 @@ public class Book implements Comparable<Book> {
 
         int num, sum = 0;
         for (int i = 0; i < potentialISBN.length(); i++) {
+            if (potentialISBN.length() == 10) {
+                if (!(potentialISBN.charAt(i) >= '0' && potentialISBN.charAt(i) <= '9') && !(i == 9 && potentialISBN.charAt(i) == 'X')) {
+                    return false;
+                }
+            }
+            else if (potentialISBN.charAt(i) < '0' || potentialISBN.charAt(i) > '9') {
+                    return false;
+            }
+
             num = potentialISBN.charAt(i) == 'X' ? 10 : potentialISBN.charAt(i) - '0';
 
             if(potentialISBN.length() == 10)
