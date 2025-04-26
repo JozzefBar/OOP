@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Window extends JFrame{
+public class Window extends JFrame  {
     private JLabel label;
 
     public Window() throws HeadlessException {
-        super("Pocitadlo");
-        //super.setTitle("Pocitadlo");  //-netreba pisat
+        super("Pocitadlo"); // super.setTitle("Pocitadlo");
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Container pane = super.getContentPane();
@@ -19,24 +18,25 @@ public class Window extends JFrame{
 
         this.label = new JLabel("pocet stlaceni: 0");
         pane.add(this.label);
+
         JButton button = new JButton("stlac ma");
         int buttonHeight = button.getPreferredSize().height;
         Dimension buttonSize = new Dimension(Integer.MAX_VALUE, buttonHeight);
         button.setMaximumSize(buttonSize);
         pane.add(button);
 
-        super.pack(); //super.setSize(500,400);
+        super.pack(); // super.setSize(500, 400);
 
         button.addActionListener(new ClickListener());
     }
 
-    private class ClickListener implements ActionListener{
+    private class ClickListener implements ActionListener {
         private int counter = 0;
 
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             System.out.println("tlacidlo stlacene");
-            ++counter;
+            ++ this.counter;
             Window.this.label.setText("pocet stlaceni: " + counter);
             Window.this.pack();
         }

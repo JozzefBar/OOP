@@ -1,8 +1,8 @@
 package vnorenetypy;
 
-public class WindowStarter implements Runnable{
+public class WindowStarter implements Runnable {
     @Override
-    public void run(){
+    public void run() {
         Window window = new Window();
         window.setVisible(true);
     }

@@ -1,27 +1,26 @@
 package porovnavanie;
 
-
 import java.util.Objects;
 
-public class Student implements Comparable<Student>{
-    public String name;
-    private int startYear;
+public class Student implements Comparable<Student> {
+    private String name; // meno
+    private int startYear; // rok zaciatku studia
 
-    public Student(String name, int startYear){
+    public Student(String name, int startYear) {
         this.name = name;
         this.startYear = startYear;
-    }
-
-    public int getStartYear() {
-        return startYear;
     }
 
     public String getName() {
         return name;
     }
 
+    public int getStartYear() {
+        return startYear;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s (%d)", name, startYear);
     }
 
@@ -31,7 +30,7 @@ public class Student implements Comparable<Student>{
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return startYear == student.startYear && Objects.equals(name, student.name);
-        //if (name != null) name.equals(student.name)
+//        if (name != null) name.equals(student.name)
     }
 
     @Override
@@ -40,13 +39,17 @@ public class Student implements Comparable<Student>{
     }
 
     @Override
-    public int compareTo(Student other){
+    public int compareTo(Student other) {
         int nameOrder = name.compareTo(other.name);
-        if(nameOrder != 0){
+        if (nameOrder != 0) {
             return nameOrder;
         }
-        else{
+        else {
             return startYear - other.startYear;
         }
     }
 }
+
+// https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html
+// https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html
+// https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html

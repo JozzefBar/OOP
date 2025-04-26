@@ -5,7 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a32c0b7-4db5-41b9-9e13-e4be60c1441a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../cviko8/src/genericketypy/EmptyQueueException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/company/InsuranceCompany.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/AbstractContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/AbstractVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/InvalidContractException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/MasterVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/SingleVehicleContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/contracts/TravelContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/objects/LegalForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/objects/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/objects/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/payment/ContractPaymentData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/payment/PaymentHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/payment/PaymentInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../semestralka/src/payment/PremiumPaymentFrequency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/genericketypy/FullQueueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/genericketypy/FullQueueException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/genericketypy/GenerickeTypyAplikacia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/genericketypy/GenerickeTypyAplikacia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/genericketypy/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/genericketypy/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/genericketypy/QueueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/genericketypy/QueueException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/porovnavanie/Porovnavanie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/porovnavanie/Porovnavanie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/porovnavanie/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/porovnavanie/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/VnoreneTypyAplikacia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/VnoreneTypyAplikacia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/WindowStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../cviko8/src/vnorenetypy/WindowStarter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,29 +47,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.tes1.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.test2 Task.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.tes1.executor": "Run",
+    "JUnit.test2 Task.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jojob/Desktop/OOP/zadania/zadanie3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -114,6 +138,7 @@
       <workItem from="1743541658578" duration="124000" />
       <workItem from="1743541808965" duration="119000" />
       <workItem from="1743799481214" duration="742000" />
+      <workItem from="1745506405719" duration="982000" />
     </task>
     <servers />
   </component>

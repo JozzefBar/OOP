@@ -1,4 +1,5 @@
 package genericketypy;
 
-public class QueueException {
+public class QueueException extends Exception {
+    // TODO
 }

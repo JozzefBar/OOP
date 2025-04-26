@@ -3,7 +3,7 @@ package porovnavanie;
 import java.util.Arrays;
 
 public class Porovnavanie {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Student peter = new Student("Peter", 2024);
         Student peter2 = new Student("Peter", 2024);
         Student peter3 = new Student("Peter", 2025);
@@ -11,7 +11,7 @@ public class Porovnavanie {
         Student igor = new Student("Igor", 2024);
         Student jozef = new Student("Jozef", 2023);
 
-        //System.out.println(peter);
+//        System.out.println(peter);
         System.out.println(peter.equals(peter2));
         System.out.println(peter.equals(pavol));
 
@@ -19,7 +19,7 @@ public class Porovnavanie {
         System.out.println(Arrays.toString(array));
         Arrays.sort(array);
         System.out.println(Arrays.toString(array));
-        Arrays.sort(array, new StudentComparator());
+        Arrays.sort(array, new StudentComparator()); // opacne usporiadanie new StudentComparator().reversed()
         System.out.println(Arrays.toString(array));
     }
 }
