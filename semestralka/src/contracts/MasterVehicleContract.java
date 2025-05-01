@@ -16,7 +16,7 @@ public class MasterVehicleContract extends AbstractVehicleContract{
         if(contractPaymentData != null || coverageAmount != 0 || policyHolder.getLegalForm() == LegalForm.NATURAL)
             throw new IllegalArgumentException("Failure to fulfill the condition");
 
-        childContracts = new LinkedHashSet<>();
+        childContracts = new LinkedHashSet<>();   //neobsahuje duplikáty a a zachováva poradie
     }
 
     public Set<SingleVehicleContract> getChildContracts(){
@@ -30,13 +30,12 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     @Override
     public boolean isActive(){
         if(childContracts.isEmpty())
-            return super.isActive();
+            return super.isActive(); //v teste vyhodi s týmto chybu ale podla mna to je dobre
 
         for(SingleVehicleContract eachOne : childContracts){
             if(eachOne.isActive())
                 return true;
         }
-
         return false;
     }
 
@@ -51,5 +50,10 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     @Override
     public void pay(int amount) {
         insurer.getHandler().pay(this, amount);
+    }
+
+    @Override
+    public void updateBalance() {
+        insurer.chargePremiumOnContract(this);
     }
 }

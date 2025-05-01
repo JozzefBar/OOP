@@ -18,13 +18,13 @@ public class Person {
             throw new IllegalArgumentException("Failure to fulfill the condition");
 
         this.id = id;
-        this.legalForm = isValidBirthNumber(id) ? LegalForm.NATURAL : LegalForm.LEGAL;
+        legalForm = isValidBirthNumber(id) ? LegalForm.NATURAL : LegalForm.LEGAL;
         paidOutAmount = 0;
-        this.contracts = new LinkedHashSet<>();
+        contracts = new LinkedHashSet<>(); //neobsahuje duplikáty a a zachováva poradie
     }
 
     public static boolean isValidBirthNumber(String birthNumber){
-        if(birthNumber == null || birthNumber.length() < 9 || birthNumber.length() > 10) return false;
+        if(birthNumber == null || !(birthNumber.length() == 9 || birthNumber.length() == 10)) return false;
 
         for (char c : birthNumber.toCharArray()) {
             if (!Character.isDigit(c)) {
@@ -33,36 +33,35 @@ public class Person {
         }
 
         int month = Integer.parseInt(birthNumber.substring(2, 4));
-        if (!((month >= 1 && month <= 12) || (month >= 51 && month <= 62))) {
+        int fixedMonth = (month >= 51) ? month - 50 : month;
+
+        if (!(fixedMonth >= 1 && fixedMonth <= 12))
             return false;
-        }
 
         int year = Integer.parseInt(birthNumber.substring(0, 2));
         int day = Integer.parseInt(birthNumber.substring(4, 6));
 
-        if(birthNumber.length() == 9) {
-            try {
-                LocalDate date = LocalDate.of(1900 + year, month, day);
-            } catch (DateTimeException e) {
-                return false;
-            }
+        int fullYear;
+        if (birthNumber.length() == 9) {
+            if (year > 53) return false;
+            fullYear = 1900 + year;
         }
-        else{
+        else {
             int sum = 0;
-            for(int i = 0; i < 10; i++){
-                sum += (i % 2 == 0) ? Character.getNumericValue(birthNumber.charAt(i)) : -Character.getNumericValue(birthNumber.charAt(i));
+            for (int i = 0; i < 10; i++) {
+                int digit = Character.digit(birthNumber.charAt(i), 10);
+                sum += (i % 2 == 0) ? digit : -digit;
             }
 
-            if(sum % 11 != 0) return false;
-
-            int correctYear = (year <= 53) ? 2000 + year : 1900 + year;
-            int monthFixed = (month >= 51) ? month - 50 : month;
-
-            try {
-                LocalDate date = LocalDate.of(correctYear, monthFixed, day);
-            } catch (DateTimeException e) {
+            if (sum % 11 != 0)
                 return false;
-            }
+
+            fullYear = (year >= 54) ? 1900 + year : 2000 + year;
+        }
+        try {
+            LocalDate date = LocalDate.of(fullYear, fixedMonth, day);
+        } catch (DateTimeException e) {
+            return false;
         }
 
         return true;

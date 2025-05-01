@@ -2,6 +2,6 @@ package contracts;
 
 public class InvalidContractException extends RuntimeException{
     public InvalidContractException(String message){
-        super(message + "is not active!");
+        super(message + " is not active!");
     }
 }

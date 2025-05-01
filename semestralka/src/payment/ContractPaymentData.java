@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public class ContractPaymentData {
     private int premium;
     private PremiumPaymentFrequency premiumPaymentFrequency;
-    LocalDateTime nextPaymentTime;
-    int outstandingBalance;
+    private LocalDateTime nextPaymentTime;
+    private int outstandingBalance;
 
     public ContractPaymentData(int premium, PremiumPaymentFrequency premiumPaymentFrequency, LocalDateTime nextPaymentTime, int outstandingBalance){
         if(premium <= 0 || premiumPaymentFrequency == null || nextPaymentTime == null)
@@ -24,7 +24,7 @@ public class ContractPaymentData {
 
     public void setPremium(int premium){
         if (premium <= 0)
-            throw new IllegalArgumentException("Premium must be positive");
+            throw new IllegalArgumentException("Failure to fulfill the condition");
         this.premium = premium;
     }
 
@@ -38,7 +38,7 @@ public class ContractPaymentData {
 
     public void setPremiumPaymentFrequency(PremiumPaymentFrequency premiumPaymentFrequency){
         if (premiumPaymentFrequency == null)
-            throw new IllegalArgumentException("Frequency cannot be null");
+            throw new IllegalArgumentException("Failure to fulfill the condition");
         this.premiumPaymentFrequency = premiumPaymentFrequency;
     }
 
@@ -51,6 +51,6 @@ public class ContractPaymentData {
     }
 
     public void updateNextPaymentTime(){
-        this.nextPaymentTime = nextPaymentTime.plusMonths(premiumPaymentFrequency.getValueInMonths());
+        nextPaymentTime = nextPaymentTime.plusMonths(premiumPaymentFrequency.getValueInMonths());
     }
 }

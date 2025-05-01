@@ -4,6 +4,8 @@ import company.InsuranceCompany;
 import objects.Person;
 import payment.ContractPaymentData;
 
+import java.util.Objects;
+
 public abstract class AbstractContract {
 
     private final String contractNumber;
@@ -46,7 +48,7 @@ public abstract class AbstractContract {
     }
 
     public void setInactive(){
-        this.isActive = false;
+        isActive = false;
     }
 
     public void setCoverageAmount(int coverageAmount){
@@ -66,5 +68,20 @@ public abstract class AbstractContract {
 
     public void updateBalance(){
         insurer.chargePremiumOnContract(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        AbstractContract that = (AbstractContract) obj;
+        return contractNumber.equals(that.contractNumber) &&
+                insurer.equals(that.insurer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contractNumber, insurer);
     }
 }

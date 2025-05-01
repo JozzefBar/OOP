@@ -37,46 +37,49 @@ public class PaymentHandler {
         for(SingleVehicleContract childContract: contract.getChildContracts()){
             if (!childContract.isActive()) continue;
 
-            int outstandingBalance = childContract.getContractPaymentData().outstandingBalance;
+            ContractPaymentData data = childContract.getContractPaymentData();
+            int outstandingBalance = data.getOutstandingBalance();
 
             if(outstandingBalance > 0)
                 if(amount > outstandingBalance){
                     amount -= outstandingBalance;
-                    childContract.getContractPaymentData().outstandingBalance = 0;
+                    data.setOutstandingBalance(0);
                 }
             else{
-                    childContract.getContractPaymentData().outstandingBalance -= amount;
+                    data.setOutstandingBalance(outstandingBalance - amount);
                     amount = 0;
                     break;
                 }
-
         }
         while(amount > 0){
+            boolean isProgress = false;
             for(SingleVehicleContract childContract: contract.getChildContracts()){
                 if (!childContract.isActive()) continue;
 
-                int premium = childContract.getContractPaymentData().getPremium();
+                ContractPaymentData data = childContract.getContractPaymentData();
+                int outstandingBalance = data.getOutstandingBalance();
+                int premium = data.getPremium();
 
                 if(amount >= premium){
-                    childContract.getContractPaymentData().outstandingBalance -= premium;
+                    data.setOutstandingBalance(outstandingBalance - premium);
                     amount -= premium;
+                    isProgress = true;
                 }
                 else{
-                    childContract.getContractPaymentData().outstandingBalance -= amount;
+                    data.setOutstandingBalance(outstandingBalance - amount);
                     amount = 0;
+                    isProgress = true;
                     break;
                 }
             }
+
+            if (!isProgress) break;    //pripad len ak by bolo amount > 0 a vsetky kontrakty neaktivne, (for by isiel furt dokola)
         }
 
         int paidAmount = originalAmount - amount;
         PaymentInstance payment = new PaymentInstance(insurer.getCurrentTime(), paidAmount);
 
-        paymentHistory.put(contract, new TreeSet<>());
-        paymentHistory.get(contract).add(payment);
-
-        //paymentHistory.computeIfAbsent(contract, k -> new TreeSet<>()).add(payment);
-        //to isté v jednom riadku
+        paymentHistory.computeIfAbsent(contract, k -> new TreeSet<>()).add(payment);
     }
 
     public void pay(AbstractContract contract, int amount){
@@ -87,13 +90,11 @@ public class PaymentHandler {
             throw new InvalidContractException("contract");
         }
 
-        contract.getContractPaymentData().outstandingBalance -= amount;
+        ContractPaymentData data = contract.getContractPaymentData();
+        data.setOutstandingBalance(data.getOutstandingBalance() - amount);
+
         PaymentInstance payment = new PaymentInstance(insurer.getCurrentTime(), amount);
 
-        paymentHistory.put(contract, new TreeSet<>());
-        paymentHistory.get(contract).add(payment);
-
-        //paymentHistory.computeIfAbsent(contract, k -> new TreeSet<>()).add(payment);
-        //to isté v jednom riadku
+        paymentHistory.computeIfAbsent(contract, k -> new TreeSet<>()).add(payment);
     }
 }

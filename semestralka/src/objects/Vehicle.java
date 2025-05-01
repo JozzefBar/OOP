@@ -25,4 +25,7 @@ public class Vehicle {
     public int getOriginalValue() {
         return originalValue;
     }
+
+
+    //nezbieha jeden test treba zistit preco
 }

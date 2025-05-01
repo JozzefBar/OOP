@@ -21,7 +21,7 @@ public class InsuranceCompany {
             throw new IllegalArgumentException("Failure to fulfill the condition");
 
         this.currentTime = currentTime;
-        this.contracts = new LinkedHashSet<>();
+        this.contracts = new LinkedHashSet<>();   //Zmluvy sú v množine zmlúv uložené v takom poradí, v akom ich poisťovňa uzatvárala
         this.handler = new PaymentHandler(this);
     }
     public LocalDateTime getCurrentTime(){
@@ -145,7 +145,6 @@ public class InsuranceCompany {
             int premium = contract.getContractPaymentData().getPremium();
 
             contract.getContractPaymentData().setOutstandingBalance(currentOutstandingBalance + premium);
-
             contract.getContractPaymentData().updateNextPaymentTime();
         }
     }
