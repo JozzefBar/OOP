@@ -11,14 +11,14 @@ public abstract class AbstractVehicleContract extends AbstractContract{
         super(contractNumber, insurer, policyHolder, contractPaymentData, coverageAmount);
 
         if(beneficiary != null && beneficiary.equals(policyHolder))
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Beneficiary must not be the same as the policy holder.");
 
         this.beneficiary = beneficiary;
     }
 
     public void setBeneficiary(Person beneficiary){
         if(beneficiary != null && beneficiary.equals(policyHolder))
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Beneficiary must not be the same as the policy holder.");
         this.beneficiary = beneficiary;
     }
 

@@ -7,8 +7,10 @@ public class PaymentInstance implements Comparable<PaymentInstance>{
     private final int paymentAmount;
 
     public PaymentInstance(LocalDateTime paymentTime, int paymentAmount){
-        if(paymentTime == null || paymentAmount <= 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if (paymentTime == null)
+            throw new IllegalArgumentException("paymentTime must not be null");
+        if (paymentAmount <= 0)
+            throw new IllegalArgumentException("paymentAmount must be positive");
 
         this.paymentTime = paymentTime;
         this.paymentAmount = paymentAmount;

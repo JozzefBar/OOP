@@ -14,8 +14,10 @@ public class Person {
     private final Set<AbstractContract> contracts;
 
     public Person(String id){
-        if(id == null || id.isEmpty() || !(isValidBirthNumber(id) || isValidRegistrationNumber(id)))
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if (id == null || id.isEmpty() )
+            throw new IllegalArgumentException("ID must not be empty or null");
+        if (!(isValidBirthNumber(id) || isValidRegistrationNumber(id)))
+            throw new IllegalArgumentException("ID is not a valid birth or registration number");
 
         this.id = id;
         legalForm = isValidBirthNumber(id) ? LegalForm.NATURAL : LegalForm.LEGAL;
@@ -97,13 +99,13 @@ public class Person {
 
     public void addContract(AbstractContract contract){
         if(contract == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Contract must not be null");
         contracts.add(contract);
     }
 
     public void payout(int paidOutAmount){
         if(paidOutAmount <= 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Paid out amount must be positive");
 
         this.paidOutAmount += paidOutAmount;
     }

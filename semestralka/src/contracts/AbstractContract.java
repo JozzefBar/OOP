@@ -16,8 +16,17 @@ public abstract class AbstractContract {
     protected boolean isActive;
 
     public AbstractContract(String contractNumber, InsuranceCompany insurer, Person policyHolder, ContractPaymentData contractPaymentData, int coverageAmount){
-        if(contractNumber == null || contractNumber.isEmpty() || insurer == null || policyHolder == null || coverageAmount < 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if(contractNumber == null || contractNumber.isEmpty())
+            throw new IllegalArgumentException("Contract number must not be null or empty.");
+
+        if (insurer == null)
+            throw new IllegalArgumentException("Insurer must not be null.");
+
+        if (policyHolder == null)
+            throw new IllegalArgumentException("Policy holder must not be null.");
+
+        if (coverageAmount < 0)
+            throw new IllegalArgumentException("Coverage amount must not be negative.");
 
         this.contractNumber = contractNumber;
         this.insurer = insurer;
@@ -53,7 +62,7 @@ public abstract class AbstractContract {
 
     public void setCoverageAmount(int coverageAmount){
         if(coverageAmount < 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Coverage amount must not be negative.");
         this.coverageAmount = coverageAmount;
     }
 

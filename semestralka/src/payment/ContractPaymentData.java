@@ -9,8 +9,12 @@ public class ContractPaymentData {
     private int outstandingBalance;
 
     public ContractPaymentData(int premium, PremiumPaymentFrequency premiumPaymentFrequency, LocalDateTime nextPaymentTime, int outstandingBalance){
-        if(premium <= 0 || premiumPaymentFrequency == null || nextPaymentTime == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if (premium <= 0)
+            throw new IllegalArgumentException("Premium must be greater than 0");
+        if (premiumPaymentFrequency == null)
+            throw new IllegalArgumentException("Payment frequency must not be null");
+        if (nextPaymentTime == null)
+            throw new IllegalArgumentException("Next payment time must not be null");
 
         this.premium = premium;
         this.premiumPaymentFrequency = premiumPaymentFrequency;
@@ -24,7 +28,7 @@ public class ContractPaymentData {
 
     public void setPremium(int premium){
         if (premium <= 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Premium must be greater than 0");
         this.premium = premium;
     }
 
@@ -38,7 +42,7 @@ public class ContractPaymentData {
 
     public void setPremiumPaymentFrequency(PremiumPaymentFrequency premiumPaymentFrequency){
         if (premiumPaymentFrequency == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Payment frequency must not be null");
         this.premiumPaymentFrequency = premiumPaymentFrequency;
     }
 

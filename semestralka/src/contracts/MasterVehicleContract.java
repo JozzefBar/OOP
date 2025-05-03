@@ -13,8 +13,12 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     public MasterVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder) {
         super(contractNumber, insurer, beneficiary, policyHolder, null, 0);
 
-        if(contractPaymentData != null || coverageAmount != 0 || policyHolder.getLegalForm() == LegalForm.NATURAL)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if(contractPaymentData != null)
+            throw new IllegalArgumentException("MasterVehicleContract must not have contractPaymentData.");
+        if(coverageAmount != 0)
+            throw new IllegalArgumentException("MasterVehicleContract must have zero coverageAmount.");
+        if(policyHolder.getLegalForm() == LegalForm.NATURAL)
+            throw new IllegalArgumentException("MasterVehicleContract must be held by a legal entity.");
 
         childContracts = new LinkedHashSet<>();   //neobsahuje duplikáty a a zachováva poradie
     }
@@ -24,13 +28,13 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     }
 
     public void requestAdditionOfChildContract(SingleVehicleContract contract){
-        childContracts.add(contract);
+        insurer.moveSingleVehicleContractToMasterVehicleContract(this, contract);
     }
 
     @Override
     public boolean isActive(){
         if(childContracts.isEmpty())
-            return super.isActive(); //v teste vyhodi s týmto chybu ale podla mna to je dobre
+            return super.isActive();
 
         for(SingleVehicleContract eachOne : childContracts){
             if(eachOne.isActive())

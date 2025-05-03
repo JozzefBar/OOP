@@ -18,7 +18,7 @@ public class InsuranceCompany {
 
     public InsuranceCompany(LocalDateTime currentTime){
         if(currentTime == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("currentTime must not be null.");
 
         this.currentTime = currentTime;
         this.contracts = new LinkedHashSet<>();   //Zmluvy sú v množine zmlúv uložené v takom poradí, v akom ich poisťovňa uzatvárala
@@ -30,7 +30,7 @@ public class InsuranceCompany {
 
     public void setCurrentTime(LocalDateTime currentTime) {
         if(currentTime == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("currentTime must not be null.");
 
         this.currentTime = currentTime;
     }
@@ -44,20 +44,27 @@ public class InsuranceCompany {
     }
 
     public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure){
-        if (contractNumber == null || contractNumber.isEmpty() || policyHolder == null || proposedPaymentFrequency == null || vehicleToInsure == null || proposedPremium <= 0) {
-            throw new IllegalArgumentException("Failure to fulfill the condition");
-        }
+        if (contractNumber == null || contractNumber.isEmpty())
+            throw new IllegalArgumentException("contractNumber must not be null or empty.");
+        if (policyHolder == null)
+            throw new IllegalArgumentException("policyHolder must not be null.");
+        if (proposedPaymentFrequency == null)
+            throw new IllegalArgumentException("proposedPaymentFrequency must not be null.");
+        if (vehicleToInsure == null)
+            throw new IllegalArgumentException("vehicleToInsure must not be null.");
+        if (proposedPremium <= 0)
+            throw new IllegalArgumentException("proposedPremium must be positive.");
 
         for(AbstractContract contract : contracts){
             if (contractNumber.equals(contract.getContractNumber()))
-                throw new IllegalArgumentException("Failure to fulfill the condition");
+                throw new IllegalArgumentException("contractNumber must be unique.");
         }
 
         int valueInMonths = proposedPaymentFrequency.getValueInMonths();
         int yearSum = proposedPremium * (12/valueInMonths);
 
         if(yearSum < vehicleToInsure.getOriginalValue() * 0.02)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Proposed premium does not meet minimum yearly threshold.");
 
         ContractPaymentData paymentData = new ContractPaymentData(proposedPremium, proposedPaymentFrequency, currentTime, 0);
         SingleVehicleContract newContract = new SingleVehicleContract(contractNumber, this, beneficiary, policyHolder, paymentData, vehicleToInsure.getOriginalValue()/2, vehicleToInsure);
@@ -71,20 +78,27 @@ public class InsuranceCompany {
     }
 
     public TravelContract insurePersons(String contractNumber, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Set<Person> personsToInsure){
-        if (contractNumber == null || contractNumber.isEmpty() || policyHolder == null || proposedPaymentFrequency == null || personsToInsure == null || personsToInsure.isEmpty() || proposedPremium <= 0) {
-            throw new IllegalArgumentException("Failure to fulfill the condition");
-        }
+        if (contractNumber == null || contractNumber.isEmpty())
+            throw new IllegalArgumentException("contractNumber must not be null or empty.");
+        if (policyHolder == null)
+            throw new IllegalArgumentException("policyHolder must not be null.");
+        if (proposedPaymentFrequency == null)
+            throw new IllegalArgumentException("proposedPaymentFrequency must not be null.");
+        if (personsToInsure == null || personsToInsure.isEmpty())
+            throw new IllegalArgumentException("personsToInsure must not be null or empty.");
+        if (proposedPremium <= 0)
+            throw new IllegalArgumentException("proposedPremium must be positive.");
 
-        for(AbstractContract contract : contracts){
+        for (AbstractContract contract : contracts) {
             if (contractNumber.equals(contract.getContractNumber()))
-                throw new IllegalArgumentException("Failure to fulfill the condition");
+                throw new IllegalArgumentException("contractNumber must be unique.");
         }
 
         int valueInMonths = proposedPaymentFrequency.getValueInMonths();
         int yearSum = proposedPremium * (12/valueInMonths);
 
         if(yearSum < personsToInsure.size() * 5)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Proposed premium does not meet minimum yearly threshold.");
 
         ContractPaymentData paymentData = new ContractPaymentData(proposedPremium, proposedPaymentFrequency, currentTime, 0);
         TravelContract newContract = new TravelContract(contractNumber, this, policyHolder, paymentData, personsToInsure.size() * 10, personsToInsure);
@@ -100,7 +114,7 @@ public class InsuranceCompany {
     public MasterVehicleContract createMasterVehicleContract(String contractNumber, Person beneficiary, Person policyHolder){
         for(AbstractContract contract : contracts){
             if (contractNumber.equals(contract.getContractNumber()))
-                throw new IllegalArgumentException("Failure to fulfill the condition");
+                throw new IllegalArgumentException("contractNumber must be unique.");
         }
 
         MasterVehicleContract newContract = new MasterVehicleContract(contractNumber, this, beneficiary, policyHolder);
@@ -112,18 +126,23 @@ public class InsuranceCompany {
     }
 
     public void moveSingleVehicleContractToMasterVehicleContract(MasterVehicleContract masterVehicleContract, SingleVehicleContract singleVehicleContract){
-        if (masterVehicleContract == null || singleVehicleContract == null) {
-            throw new IllegalArgumentException("Failure to fulfill the condition");
-        }
+        if (masterVehicleContract == null || singleVehicleContract == null)
+            throw new IllegalArgumentException("masterVehicleContract and singleVehicleContract must not be null.");
 
-        if(!masterVehicleContract.isActive() || !singleVehicleContract.isActive() || !masterVehicleContract.getPolicyHolder().equals(singleVehicleContract.getPolicyHolder()) || !masterVehicleContract.getInsurer().equals(this) || !singleVehicleContract.getInsurer().equals(this))
-            throw new InvalidContractException("contract");
+        if (!masterVehicleContract.isActive())
+            throw new InvalidContractException("masterVehicleContract is not active.");
+        if (!singleVehicleContract.isActive())
+            throw new InvalidContractException("singleVehicleContract is not active.");
+        if (!masterVehicleContract.getPolicyHolder().equals(singleVehicleContract.getPolicyHolder()))
+            throw new InvalidContractException("policyHolder mismatch.");
+        if (!masterVehicleContract.getInsurer().equals(this) || !singleVehicleContract.getInsurer().equals(this))
+            throw new InvalidContractException("contract does not belong to this insurer.");
 
+
+        masterVehicleContract.getChildContracts().add(singleVehicleContract);
 
         contracts.remove(singleVehicleContract);
         singleVehicleContract.getPolicyHolder().getContracts().remove(singleVehicleContract);
-
-        masterVehicleContract.requestAdditionOfChildContract(singleVehicleContract);
     }
 
     public void chargePremiumsOnContracts(){
@@ -150,11 +169,15 @@ public class InsuranceCompany {
     }
 
     public void processClaim(TravelContract travelContract, Set<Person> affectedPersons){
-        if(travelContract == null || affectedPersons == null || affectedPersons.isEmpty() || !travelContract.getInsuredPersons().containsAll(affectedPersons))
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if (travelContract == null)
+            throw new IllegalArgumentException("travelContract must not be null.");
+        if (affectedPersons == null || affectedPersons.isEmpty())
+            throw new IllegalArgumentException("affectedPersons must not be null or empty.");
+        if (!travelContract.getInsuredPersons().containsAll(affectedPersons))
+            throw new IllegalArgumentException("affectedPersons must be a subset of insured persons.");
 
-        if(!travelContract.isActive())
-            throw new InvalidContractException("contract");
+        if (!travelContract.isActive())
+            throw new InvalidContractException("travelContract is not active.");
 
         int payoutAmount = travelContract.getCoverageAmount() / affectedPersons.size();
 
@@ -166,11 +189,13 @@ public class InsuranceCompany {
     }
 
     public void processClaim(SingleVehicleContract singleVehicleContract, int expectedDamages){
-        if(singleVehicleContract == null || expectedDamages <= 0)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if (singleVehicleContract == null)
+            throw new IllegalArgumentException("singleVehicleContract must not be null.");
+        if (expectedDamages <= 0)
+            throw new IllegalArgumentException("expectedDamages must be positive.");
 
-        if(!singleVehicleContract.isActive())
-            throw new InvalidContractException("contract");
+        if (!singleVehicleContract.isActive())
+            throw new InvalidContractException("singleVehicleContract is not active.");
 
         Person beneficiary = singleVehicleContract.getBeneficiary();
         int payoutAmount = singleVehicleContract.getCoverageAmount();

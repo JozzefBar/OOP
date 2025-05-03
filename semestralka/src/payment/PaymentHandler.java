@@ -14,7 +14,7 @@ public class PaymentHandler {
 
     public PaymentHandler(InsuranceCompany insurer){
         if(insurer == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+            throw new IllegalArgumentException("Insurer must not be null");
 
         this.insurer = insurer;
         this.paymentHistory = new HashMap<>();
@@ -27,12 +27,16 @@ public class PaymentHandler {
     public void pay(MasterVehicleContract contract, int amount){
         int originalAmount = amount;
 
-        if (contract == null || amount <= 0) {
-            throw new IllegalArgumentException("Failure to fulfill the condition");
-        }
-        if (!contract.isActive() || !contract.getInsurer().equals(insurer) || contract.getChildContracts().isEmpty()) {
-            throw new InvalidContractException("contract");
-        }
+        if (contract == null)
+            throw new IllegalArgumentException("Contract must not be null.");
+        if (amount <= 0)
+            throw new IllegalArgumentException("Amount must be positive.");
+        if (!contract.isActive())
+            throw new InvalidContractException("Contract must be active.");
+        if (!contract.getInsurer().equals(insurer))
+            throw new InvalidContractException("Contract must belong to this insurer.");
+        if(contract.getChildContracts().isEmpty())
+            throw new InvalidContractException("Child contracts must not be empty.");
 
         for(SingleVehicleContract childContract: contract.getChildContracts()){
             if (!childContract.isActive()) continue;
@@ -83,12 +87,14 @@ public class PaymentHandler {
     }
 
     public void pay(AbstractContract contract, int amount){
-        if (contract == null || amount <= 0) {
-            throw new IllegalArgumentException("Failure to fulfill the condition");
-        }
-        if (!contract.isActive() || !contract.getInsurer().equals(insurer)) {
-            throw new InvalidContractException("contract");
-        }
+        if (contract == null)
+            throw new IllegalArgumentException("Contract must not be null.");
+        if (amount <= 0)
+            throw new IllegalArgumentException("Amount must be positive.");
+        if (!contract.isActive())
+            throw new InvalidContractException("Contract must be active.");
+        if (!contract.getInsurer().equals(insurer))
+            throw new InvalidContractException("Contract must belong to this insurer.");
 
         ContractPaymentData data = contract.getContractPaymentData();
         data.setOutstandingBalance(data.getOutstandingBalance() - amount);

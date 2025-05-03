@@ -11,8 +11,10 @@ public class SingleVehicleContract extends AbstractVehicleContract{
     public SingleVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder, ContractPaymentData contractPaymentData, int coverageAmount, Vehicle vehicleToInsure) {
         super(contractNumber, insurer, beneficiary, policyHolder, contractPaymentData, coverageAmount);
 
-        if(vehicleToInsure == null || contractPaymentData == null)
-            throw new IllegalArgumentException("Failure to fulfill the condition");
+        if(vehicleToInsure == null)
+            throw new IllegalArgumentException("Vehicle to insure must not be null.");
+        if(contractPaymentData == null)
+            throw new IllegalArgumentException("ContractPaymentData must not be null.");
 
         insuredVehicle = vehicleToInsure;
     }
