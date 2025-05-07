@@ -46,8 +46,6 @@ public class InsuranceCompany {
     public SingleVehicleContract insureVehicle(String contractNumber, Person beneficiary, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Vehicle vehicleToInsure){
         if (contractNumber == null || contractNumber.isEmpty())
             throw new IllegalArgumentException("contractNumber must not be null or empty.");
-        if (policyHolder == null)
-            throw new IllegalArgumentException("policyHolder must not be null.");
         if (proposedPaymentFrequency == null)
             throw new IllegalArgumentException("proposedPaymentFrequency must not be null.");
         if (vehicleToInsure == null)
@@ -78,10 +76,8 @@ public class InsuranceCompany {
     }
 
     public TravelContract insurePersons(String contractNumber, Person policyHolder, int proposedPremium, PremiumPaymentFrequency proposedPaymentFrequency, Set<Person> personsToInsure){
-        if (contractNumber == null || contractNumber.isEmpty())
+        if (contractNumber == null || contractNumber.isEmpty())     //asi nemusi byť
             throw new IllegalArgumentException("contractNumber must not be null or empty.");
-        if (policyHolder == null)
-            throw new IllegalArgumentException("policyHolder must not be null.");
         if (proposedPaymentFrequency == null)
             throw new IllegalArgumentException("proposedPaymentFrequency must not be null.");
         if (personsToInsure == null || personsToInsure.isEmpty())
@@ -138,7 +134,6 @@ public class InsuranceCompany {
         if (!masterVehicleContract.getInsurer().equals(this) || !singleVehicleContract.getInsurer().equals(this))
             throw new InvalidContractException("contract does not belong to this insurer.");
 
-
         masterVehicleContract.getChildContracts().add(singleVehicleContract);
 
         contracts.remove(singleVehicleContract);
@@ -175,7 +170,6 @@ public class InsuranceCompany {
             throw new IllegalArgumentException("affectedPersons must not be null or empty.");
         if (!travelContract.getInsuredPersons().containsAll(affectedPersons))
             throw new IllegalArgumentException("affectedPersons must be a subset of insured persons.");
-
         if (!travelContract.isActive())
             throw new InvalidContractException("travelContract is not active.");
 

@@ -71,8 +71,7 @@ public abstract class AbstractContract {
     }
 
     public void pay(int amount){
-        if(amount > 0)
-            insurer.getHandler().pay(this, amount);
+        insurer.getHandler().pay(this, amount);
     }
 
     public void updateBalance(){
@@ -85,12 +84,11 @@ public abstract class AbstractContract {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         AbstractContract that = (AbstractContract) obj;
-        return contractNumber.equals(that.contractNumber) &&
-                insurer.equals(that.insurer);
+        return contractNumber.equals(that.contractNumber) && insurer.equals(that.insurer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractNumber, insurer);
+        return Objects.hash(contractNumber, insurer);           //?
     }
 }

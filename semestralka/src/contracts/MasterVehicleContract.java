@@ -13,10 +13,6 @@ public class MasterVehicleContract extends AbstractVehicleContract{
     public MasterVehicleContract(String contractNumber, InsuranceCompany insurer, Person beneficiary, Person policyHolder) {
         super(contractNumber, insurer, beneficiary, policyHolder, null, 0);
 
-        if(contractPaymentData != null)
-            throw new IllegalArgumentException("MasterVehicleContract must not have contractPaymentData.");
-        if(coverageAmount != 0)
-            throw new IllegalArgumentException("MasterVehicleContract must have zero coverageAmount.");
         if(policyHolder.getLegalForm() == LegalForm.NATURAL)
             throw new IllegalArgumentException("MasterVehicleContract must be held by a legal entity.");
 
@@ -48,7 +44,7 @@ public class MasterVehicleContract extends AbstractVehicleContract{
         for(SingleVehicleContract eachOne : childContracts){
             eachOne.setInactive();
         }
-        super.setInactive();
+        isActive = false;
     }
 
     @Override
