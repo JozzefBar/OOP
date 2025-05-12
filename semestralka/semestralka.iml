@@ -7,6 +7,11 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/BonusTesty" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/structure" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/methods" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/methods (1)" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test_2.1 (1)" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests (1)" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

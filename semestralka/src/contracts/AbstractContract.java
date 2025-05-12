@@ -89,6 +89,6 @@ public abstract class AbstractContract {
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractNumber, insurer);           //?
+        return Objects.hash(contractNumber, insurer);
     }
 }
