@@ -9,7 +9,7 @@ import contracts.SingleVehicleContract;
 import java.util.*;
 
 public class PaymentHandler {
-    private final Map<AbstractContract, Set<PaymentInstance>> paymentHistory;
+        private final Map<AbstractContract, Set<PaymentInstance>> paymentHistory;
     private final InsuranceCompany insurer;
 
     public PaymentHandler(InsuranceCompany insurer){
