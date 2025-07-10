@@ -38,7 +38,7 @@ This repository contains a collection of assignments, lectures, exercises and fi
     The project includes custom classes, data structures, design patterns, interfaces, and unit tests.  
     Emphasis is placed on clean system architecture and practical application of OOP principles.
 
-### 📝 Final Exam
+### Final Exam
 - [final_exam](final_exam/)
   - **Focus:** Practical exam project focused on **email construction using the Builder pattern**   
     - Implement an email generator using the **Builder** and **Director** patterns  
@@ -65,4 +65,4 @@ To run any project:
 To get a local copy of this repository, run the following command:  
 
 ```sh
-git clone https://github.com/JozzefBar/OOP-Exercises.git
+git clone https://github.com/JozzefBar/OOP.git
